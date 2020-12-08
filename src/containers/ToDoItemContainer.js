@@ -1,10 +1,11 @@
 import { connect } from "react-redux";
-import { deleteToDo } from "../action";
+import { completeToDo, deleteToDo } from "../action";
 import ToDoItem from "../components/ToDoItem";
 
 
 const mapDispatchToProps = (dispatch) => ({
-    deleteToDo: (id) => { dispatch(deleteToDo(id)) }
+    deleteToDo: (id) => { dispatch(deleteToDo(id)) },
+    completeToDo: (id) => { dispatch(completeToDo(id)) },
 })
 
 

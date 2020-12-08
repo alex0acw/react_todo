@@ -1,5 +1,5 @@
 import { addToDo } from './action';
-import { ADD_TO_DO, DELETE_TO_DO } from './actionType'
+import { ADD_TO_DO, COMPLETE_TO_DO, DELETE_TO_DO } from './actionType'
 import { v4 as uuidv4 } from 'uuid';
 import { combineReducers } from "redux";
 
@@ -10,6 +10,10 @@ const toDoList = (state = [], action) => {
         }
         case DELETE_TO_DO:
             return state.filter((value) => (value.id !== action.payload));
+        case COMPLETE_TO_DO:
+            return state.map(val =>
+                (val.id === action.payload ? { ...val, complete: true } : val)
+            )
         default:
             break;
     }
