@@ -8,8 +8,10 @@ class ToDoGroup extends Component {
         return (
             <div>
                 {
-                    this.props.toDoList.map((value) =>
-                        <ToDoItemContainer key={value.id} id={value.id} content={value.content} complete={value.complete} />
+                    Object.entries(this.props.toDoList).map(
+                        ([key, value]) => {
+                            return <ToDoItemContainer key={key} id={key} content={value.content} complete={value.complete} />
+                        }
                     )
                 }
             </div>
