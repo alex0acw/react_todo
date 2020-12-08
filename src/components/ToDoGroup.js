@@ -6,7 +6,7 @@ class ToDoGroup extends Component {
 
     render() {
         return (
-            <div>
+            <div className="todo-group">
                 {
                     Object.entries(this.props.toDoList).map(
                         ([key, value]) => {

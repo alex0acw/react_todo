@@ -3,7 +3,7 @@ import { useState } from "react"
 export default function ({ addToDo }) {
     const [content, setContent] = useState("")
     return (
-        <div>
+        <div className="todo-generator">
             <input type="text" value={content} onChange={(e) => { setContent(e.target.value) }} />
             <button onClick={() =>
                 addToDo(content)
