@@ -1,12 +1,17 @@
-import {addToDo} from './action';
-import {ADD_TO_DO} from './actionType'
+import { addToDo } from './action';
+import { ADD_TO_DO, DELETE_TO_DO } from './actionType'
 import { v4 as uuidv4 } from 'uuid';
 import { combineReducers } from "redux";
 
 const toDoList = (state = [], action) => {
-    if(action.type === ADD_TO_DO){
-        state.push({id: uuidv4(), content: action.payload, complete: false});
-        return state;
+    switch (action.type) {
+        case ADD_TO_DO: {
+            return [...state, { id: uuidv4(), content: action.payload, complete: false }];
+        }
+        case DELETE_TO_DO:
+            return state.filter((value) => (value.id !== action.payload));
+        default:
+            break;
     }
     return state;
 
