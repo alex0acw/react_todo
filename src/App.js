@@ -1,13 +1,10 @@
 import './App.css';
-import ToDoGeneratorContainer from './containers/ToDoGeneratorContainer';
-import ToDoGroupContainer from './containers/ToDoGroupContainer';
-
+import ToDoList from './components/ToDoList';
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ToDoGroupContainer/>
-        <ToDoGeneratorContainer/>
+        <ToDoList />
       </header>
     </div>
   );
