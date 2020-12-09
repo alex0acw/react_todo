@@ -3,7 +3,7 @@ import ToDoGroup from "../components/ToDoGroup";
 
 const mapStateToProps = state => ({
     toDoList: Object.fromEntries(
-        Object.entries(state.toDoList).filter(([id, value]) => (!value.complete))
+        Object.entries(state.toDoList).filter(([id, value]) => (value.complete))
     )
 })
 
