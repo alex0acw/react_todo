@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { toggleToDo, deleteToDo } from "../action";
+import { toggleToDo, deleteToDo } from "../redux/actions";
 import ToDoItem from "../components/ToDoItem";
 
 
