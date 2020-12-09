@@ -1,3 +1,4 @@
+import { Button, Input } from "antd"
 import { useState } from "react"
 import { addTodos } from "../api/todosApi"
 
@@ -8,13 +9,13 @@ export default function ({ addToDo }) {
     }
     return (
         <div className="todo-generator">
-            <input type="text" value={content}
+            <Input type="text" value={content}
                 onChange={(e) => { setContent(e.target.value) }}
                 onKeyPress={e => { if (e.code === "Enter") myAddTodo(content) }}
             />
-            <button onClick={() =>
+            <Button onClick={() =>
                 myAddTodo(content)
-            } >add</button>
+            } >Add</Button>
         </div>
     )
 }

@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+body {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -34,16 +34,24 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-
-#path-list a {
-  color: white;
+#path-buttons {
+  margin: 20px;
 }
 
-#path-list a.active {
+#path-buttons button {
+  font-size: inherit;
+  height: fit-content;
+}
+
+
+#path-buttons button a.active {
   color: red;
 }
+
+@import '~antd/dist/antd.dark.css';

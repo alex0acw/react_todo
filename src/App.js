@@ -1,11 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { HashRouter, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import { getTodos } from './api/todosApi';
-import './App.css';
 import DoneToDoList from './components/DoneToDoList';
 import NotFoundPage from './components/NotFoundPage';
 import ToDoList from './components/ToDoList';
 import { SET_TODOS } from './redux/actionType';
+import './App.css';
+import { Button } from 'antd';
+
 function App() {
   const dispatch = useDispatch();
   getTodos().then(({ data }) => {
@@ -21,16 +23,13 @@ function App() {
   });
   return (
     <div className="App">
-      <header className="App-header">
+      <body>
         <HashRouter>
-          <ul id="path-list">
-            <li>
-              <NavLink to="/todo">TODO List</NavLink>
-            </li>
-            <li>
-              <NavLink to="/done">Done TODO List</NavLink>
-            </li>
-          </ul>
+          <div id="path-buttons">
+            <Button><NavLink to="/todo">TODO List</NavLink></Button>
+            <Button>
+              <NavLink to="/done">Done TODO List</NavLink></Button>
+          </div>
           <Switch>
             <Route exact path="/done" component={DoneToDoList} />
             <Route exact path="/todo" component={ToDoList} />
@@ -38,7 +37,7 @@ function App() {
             <Route component={NotFoundPage} />
           </Switch>
         </HashRouter>
-      </header>
+      </body>
     </div>
   );
 }

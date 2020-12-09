@@ -21,6 +21,19 @@
     margin-right: 5px;
 }
 
+.todo-generator .ant-btn {
+    font-size: inherit;
+    height: inherit;
+    display: block;
+    margin-right: 5px;
+}
+.todo-generator .ant-input {
+    font-size: inherit;
+    height: inherit;
+    display: block;
+    margin-right: 5px;
+}
+
 .todo-generator *:last-child {
     margin-right: 0;
 }
