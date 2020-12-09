@@ -67,6 +67,7 @@
     flex-grow: 1;
     margin: 5px;
     cursor: pointer;
+    text-align: left;
 }
 
 .todo-item button {
@@ -90,4 +91,8 @@ div.tag-group {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+div.tag-group span {
+    font-size: inherit;
 }
