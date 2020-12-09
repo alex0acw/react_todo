@@ -14,8 +14,8 @@ function App() {
     const event = {
       type: SET_TODOS,
       payload: data.reduce((prev, current) => {
-        const { content, isDone: complete } = current;
-        prev[current.id] = { content, complete };
+        const { content, isDone: complete, tags } = current;
+        prev[current.id] = { content, complete, tags };
         return prev
       }, {})
     }

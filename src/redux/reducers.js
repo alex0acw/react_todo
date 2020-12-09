@@ -2,7 +2,6 @@ import { addToDo } from './actions';
 import { ADD_TO_DO, TOGGLE_TO_DO, DELETE_TO_DO, SET_TODOS, SET_TODOS_TAGS } from './actionType'
 import { v4 as uuidv4 } from 'uuid';
 import { combineReducers } from "redux";
-import { getTodos } from '../api/todosApi';
 
 
 const toDoList = (state = {}, action) => {
@@ -15,14 +14,13 @@ const toDoList = (state = {}, action) => {
             return { ...state };
         }
         case ADD_TO_DO: {
-            return { ...state, [uuidv4()]: { content: action.payload, complete: false } };
+            return { ...state, [uuidv4()]: { content: action.payload, complete: false, tags: [] } };
         }
         case DELETE_TO_DO:
             delete state[action.payload];
             return { ...state };
         case TOGGLE_TO_DO:
-            state[action.payload].complete = !state[action.payload].complete;
-            return { ...state };
+            return { ...state, [action.payload]: { ...state[action.payload], complete: !state[action.payload].complete } };
         default:
             return state;
     }

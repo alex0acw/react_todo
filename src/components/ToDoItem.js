@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { deleteTodo, setTodoIsDone } from '../api/todosApi';
+import { deleteTodo, setTodoIsDone, setTodoTags as setTodoTagsApi } from '../api/todosApi';
 import TagGroup from "./TagGroup";
 
-export default function ToDoItem({ completeToDo, deleteToDo: deleteReduxTodo, content, id, complete: done, setToDoTags }) {
+export default function ToDoItem({ completeToDo, deleteToDo: deleteReduxTodo, id, todoItem: { complete: done, content, tags }, setToDoTags }) {
 
     const deleteTodoWithApi = (id) => {
         deleteTodo(id).then(() => deleteReduxTodo(id));
@@ -18,12 +18,13 @@ export default function ToDoItem({ completeToDo, deleteToDo: deleteReduxTodo, co
                 onClick={() => setTodoDoneWithApi(id, !done)}>
                 {content}
             </span>
-            <TagGroup tags={[]} onTagsCahnge={
+            <TagGroup tags={tags} onTagsCahnge={
                 (tags) => {
-                    setToDoTags(id, tags)
+                    setTodoTagsApi(id, tags).then(() => setToDoTags(id, tags))
+
                 }
             } />
-            <button onClick={(e) => { e.stopPropagation(); deleteTodoWithApi(this.props.id) }}>x</button>
+            <button onClick={(e) => { e.stopPropagation(); deleteTodoWithApi(id) }}>x</button>
         </div>
     );
 }
