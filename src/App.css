@@ -38,3 +38,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+#path-list a {
+  color: white;
+}
+
+#path-list a.active {
+  color: red;
+}
