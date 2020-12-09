@@ -18,10 +18,13 @@ export default class EditableTagGroup extends Component {
             tags: props.tags || []
         })
     }
-
+    componentDidMount() {
+        this.setState({ tags: this.props.tags || [] });
+    }
     handleClose = removedTag => {
         const tags = this.state.tags.filter(tag => tag !== removedTag);
         this.setState({ tags });
+        this.props.onTagsCahnge?.(tags);
     };
 
     showInput = () => {
@@ -38,12 +41,12 @@ export default class EditableTagGroup extends Component {
         if (inputValue && tags.indexOf(inputValue) === -1) {
             tags = [...tags, inputValue];
         }
-        console.log(tags);
         this.setState({
             tags,
             inputVisible: false,
             inputValue: '',
         });
+        this.props.onTagsCahnge?.(tags);
     };
 
     handleEditInputChange = e => {
@@ -55,6 +58,7 @@ export default class EditableTagGroup extends Component {
             const newTags = [...tags];
             newTags[editInputIndex] = editInputValue;
 
+            this.props.onTagsCahnge?.(tags);
             return {
                 tags: newTags,
                 editInputIndex: -1,
@@ -133,7 +137,6 @@ export default class EditableTagGroup extends Component {
                         className="tag-input"
                         value={inputValue}
                         onChange={this.handleInputChange}
-                        onBlur={this.handleInputConfirm}
                         onPressEnter={this.handleInputConfirm}
                     />
                 )}
