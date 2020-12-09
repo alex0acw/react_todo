@@ -17,8 +17,8 @@ function App() {
             </li>
           </ul>
           <Switch>
-            <Route path="/done" component={DoneToDoList} />
-            <Route path="/todo" component={ToDoList} />
+            <Route exact path="/done" component={DoneToDoList} />
+            <Route exact path="/todo" component={ToDoList} />
             <Redirect exact from="/" to="/todo" />
             <Route component={NotFoundPage} />
           </Switch>
