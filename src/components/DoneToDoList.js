@@ -4,8 +4,7 @@ import "./ToDoList.css"
 export default function () {
     return (
         <div className="todo-list">
-            <p>TODO List</p>
-            {/* <ToDoGeneratorContainer /> */}
+            <p>Done TODO List</p>
             <DoneToDoGroupContainer />
         </div>
     )
