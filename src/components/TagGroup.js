@@ -75,6 +75,22 @@ export default class EditableTagGroup extends Component {
         this.editInput = input;
     };
 
+    hashString = function (str) {
+        var hash = 0;
+        if (str.length == 0) return hash;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convert to 32bit integer
+        }
+        console.log(hash)
+        return hash;
+    }
+
+    colorArray = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
+
+    hashColor = (str) => this.colorArray[Math.abs(this.hashString(str)) % this.colorArray.length]
+
     render() {
         const { onTagsCahnge } = this.props;
 
@@ -105,17 +121,9 @@ export default class EditableTagGroup extends Component {
                             key={tag}
                             closable={true}
                             onClose={() => this.handleClose(tag)}
-                        // style={{ "width": "50px" }}
+                            style={{ backgroundColor: this.hashColor(tag) }}
                         >
                             <span
-                                onDoubleClick={e => {
-                                    if (index !== 0) {
-                                        this.setState({ editInputIndex: index, editInputValue: tag }, () => {
-                                            this.editInput.focus();
-                                        });
-                                        e.preventDefault();
-                                    }
-                                }}
                             >
                                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}
                             </span>
@@ -137,12 +145,13 @@ export default class EditableTagGroup extends Component {
                         className="tag-input"
                         value={inputValue}
                         onChange={this.handleInputChange}
+                        onBlur={this.handleInputConfirm}
                         onPressEnter={this.handleInputConfirm}
                     />
                 )}
                 {!inputVisible && (
-                    <Tag className="site-tag-plus" onClick={this.showInput}>
-                        <PlusOutlined /> New Tag
+                    <Tag className="site-tag-plus" onClick={this.showInput} style={{ border: "0" }}>
+                        <PlusOutlined />
                     </Tag>
                 )}
             </div>

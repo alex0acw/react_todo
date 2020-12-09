@@ -95,4 +95,9 @@ div.tag-group {
 
 div.tag-group span {
     font-size: inherit;
+    background-color: inherit;
+}
+
+div.tag-group input {
+    font-size: inherit;
 }
