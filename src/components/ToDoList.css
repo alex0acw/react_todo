@@ -106,3 +106,7 @@ div.tag-group input {
     font-size: inherit;
     width: calc(20vmin);
 }
+
+div.ant-select span {
+    /* display: none; */
+}

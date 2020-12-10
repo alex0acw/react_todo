@@ -2,7 +2,6 @@ import { AutoComplete, Tag, Tooltip } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { addTodoTags } from "../api/todosApi";
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons';
-import { TwitterPicker } from 'react-color';
 import { TagCreator } from "./TagCreator";
 
 export default function TagList({ tags: initTags, tagDefs: initTagDefs, onTagsChange, addTagDef: addTagDefRedux }) {
@@ -20,7 +19,7 @@ export default function TagList({ tags: initTags, tagDefs: initTagDefs, onTagsCh
 
     const addTag = ({ content, color }) => {
         if (tagDefs.filter(tagDef => tagDef.content === content).length === 0) {
-            const newTagDef = { content, color: "red" };
+            const newTagDef = { content, color: color };
             setTagDefs([...tagDefs, newTagDef])
             addTodoTags(newTagDef.content, newTagDef.color).then(() => {
                 addTagDefRedux(newTagDef)
@@ -50,7 +49,7 @@ export default function TagList({ tags: initTags, tagDefs: initTagDefs, onTagsCh
 
             {inputVisible && (
                 <TagCreator
-                    onBlur={() => { setInputVisible(false); }}
+                    onClose={() => { setInputVisible(false); }}
                     onCreateTag={(tag) => { addTag(tag); setInputVisible(false); }} tagOptions={tagDefs.map(v => ({ value: v.content }))}
                 />
             )}
