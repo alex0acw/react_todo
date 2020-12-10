@@ -18,7 +18,7 @@ export const setToDoTags = (id, tags) => ({
     payload: { id, tags }
 })
 
-export const addTag = (content, color) => ({
+export const addTagDef = ({content, color}) => ({
     type: ADD_TAG,
     payload: { content, color }
 })

@@ -1,9 +1,16 @@
 import { connect } from "react-redux";
 import TagList from "../components/TagList";
+import { addTagDef } from "../redux/actions";
 
 const mapStateToProps = state => ({
-    tagsDefs: state.tags
+    tagDefs: state.tags,
 })
 
-const TagListContainer = connect(mapStateToProps, null)(TagList);
+const mapDispatchToProps = (dispatch) => ({
+    addTagDef: (tagDef) => {
+        dispatch(addTagDef(tagDef))
+    }
+})
+
+const TagListContainer = connect(mapStateToProps, mapDispatchToProps)(TagList);
 export default TagListContainer;

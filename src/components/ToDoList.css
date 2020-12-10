@@ -67,8 +67,11 @@
     background-color: black;
     flex-grow: 1;
     margin: 5px;
-    cursor: pointer;
     text-align: left;
+}
+
+.todo-item .anticon-close{
+    cursor: pointer;
 }
 
 .todo-item button {

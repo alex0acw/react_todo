@@ -1,53 +1,57 @@
-import { Input, Tag, Tooltip } from "antd";
+import { AutoComplete, Tag, Tooltip } from "antd";
 import { useEffect, useRef, useState } from "react";
-import { PlusOutlined } from '@ant-design/icons';
+import { addTodoTags } from "../api/todosApi";
+import { PlusOutlined, CloseOutlined } from '@ant-design/icons';
+import { TwitterPicker } from 'react-color';
+import { TagCreator } from "./TagCreator";
 
-export default function TagList({ tags: initTags = [], tagsDefs = [], onTagsChange }) {
-
+export default function TagList({ tags: initTags, tagDefs: initTagDefs, onTagsChange, addTagDef: addTagDefRedux }) {
+    const [tagDefs, setTagDefs] = useState(initTagDefs);
     const [tags, setTags] = useState(initTags);
     const [inputVisible, setInputVisible] = useState(false);
-    const [inputValue, setInputValue] = useState("");
-
-    const inputRef = useRef(null);
 
     useEffect(() => {
-        if (inputVisible)
-            inputRef.current.focus();
-    }, [inputVisible]);
+        setTagDefs(initTagDefs);
+    }, [initTagDefs])
+    useEffect(() => {
+        setTags(initTags);
+    }, [initTags])
 
-    const createTag = (content) => {
-        onTagsChange([...tags, content])
-        // setTags()
+
+    const addTag = ({ content, color }) => {
+        if (tagDefs.filter(tagDef => tagDef.content === content).length === 0) {
+            const newTagDef = { content, color: "red" };
+            setTagDefs([...tagDefs, newTagDef])
+            addTodoTags(newTagDef.content, newTagDef.color).then(() => {
+                addTagDefRedux(newTagDef)
+            })
+        }
+        if (!tags.includes(content)) {
+            setTags([...tags, content])
+            onTagsChange([...tags, content])
+        }
     }
-    
-    return (
-        <div>
 
+    return (
+        <div className={"tag-group"}>
             {tags.map((tagContent) => (
                 <Tooltip title={tagContent} key={tagContent}>
                     <Tag
-                        closable="true"
-                        onClose={() => onTagsChange?.(tags.filter(tag => tag !== tagContent))}
-                        style={{ backgroundColor: tagsDefs.filter(tagDef => tagDef.content === tagContent)[0]?.color }}
+                        style={{ backgroundColor: tagDefs.filter(tagDef => tagDef.content === tagContent)[0]?.color }}
                     >
-                        <span>
+                        <span style={{ backgroundColor: "transparent" }}>
                             {tagContent.length > 20 ? `${tagContent.slice(0, 20)}...` : tagContent}
                         </span>
+                        <CloseOutlined onClick={() => onTagsChange?.(tags.filter(tag => tag !== tagContent))} style={{ backgroundColor: "transparent" }} />
                     </Tag>
                 </Tooltip>
 
             ))}
 
             {inputVisible && (
-                <Input
-                    ref={inputRef}
-                    type="text"
-                    size="small"
-                    className="tag-input"
-                    value={inputValue}
-                    onChange={({ target }) => setInputValue(target.value)}
-                    onBlur={() => { createTag(inputValue); setInputVisible(false) }}
-                // onPressEnter={}
+                <TagCreator
+                    onBlur={() => { setInputVisible(false); }}
+                    onCreateTag={(tag) => { addTag(tag); setInputVisible(false); }} tagOptions={tagDefs.map(v => ({ value: v.content }))}
                 />
             )}
             {!inputVisible && (

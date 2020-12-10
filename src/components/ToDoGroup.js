@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import ToDoItemContainer from '../containers/ToDoItemContainer';
+import ToDoItem from './ToDoItem';
 
-class ToDoGroup extends Component {
-
-    render() {
-        return (
-            <div className="todo-group">
-                {
-                    Object.entries(this.props.toDoList).map(
-                        ([uuid, value]) => {
-                            return <ToDoItemContainer key={uuid} id={uuid} todoItem={value} />
-                        }
-                    )
-                }
-            </div>
-        );
-    }
+function ToDoGroup({ toDoList }) {
+    return (
+        <div className="todo-group">
+            {
+                Object.entries(toDoList).map(
+                    ([uuid, value]) => {
+                        // return <ToDoItemContainer key={uuid} id={uuid} todoItem={value} />
+                        return <ToDoItem key={uuid} id={uuid} todoItem={value}></ToDoItem>
+                    }
+                )
+            }
+        </div>
+    );
 }
-
 
 export default ToDoGroup;
