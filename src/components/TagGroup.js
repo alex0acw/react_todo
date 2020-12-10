@@ -83,11 +83,10 @@ export default class EditableTagGroup extends Component {
             hash = ((hash << 5) - hash) + char;
             hash = hash & hash; // Convert to 32bit integer
         }
-        console.log(hash)
         return hash;
     }
 
-    colorArray = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
+    colorArray = ["Blue ", "Green", "Red", "Brown", "Violet", "Indigo", "#222"];
 
     hashColor = (str) => this.colorArray[Math.abs(this.hashString(str)) % this.colorArray.length]
 

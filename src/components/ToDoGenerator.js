@@ -5,7 +5,7 @@ import { addTodos } from "../api/todosApi"
 export default function ({ addToDo }) {
     const [content, setContent] = useState("")
     const myAddTodo = (content) => {
-        addTodos(content).then(({ data }) => { addToDo(content) })
+        addTodos(content).then(({ data }) => { addToDo(content); setContent(""); })
     }
     return (
         <div className="todo-generator">

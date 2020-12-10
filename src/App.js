@@ -23,21 +23,19 @@ function App() {
   });
   return (
     <div className="App">
-      <body>
-        <HashRouter>
-          <div id="path-buttons">
-            <Button><NavLink to="/todo">TODO List</NavLink></Button>
-            <Button>
-              <NavLink to="/done">Done TODO List</NavLink></Button>
-          </div>
-          <Switch>
-            <Route exact path="/done" component={DoneToDoList} />
-            <Route exact path="/todo" component={ToDoList} />
-            <Redirect exact from="/" to="/todo" />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </HashRouter>
-      </body>
+      <HashRouter>
+        <div id="path-buttons">
+          <Button><NavLink to="/todo">TODO List</NavLink></Button>
+          <Button>
+            <NavLink to="/done">Done TODO List</NavLink></Button>
+        </div>
+        <Switch>
+          <Route exact path="/done" component={DoneToDoList} />
+          <Route exact path="/todo" component={ToDoList} />
+          <Redirect exact from="/" to="/todo" />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </HashRouter>
     </div>
   );
 }
