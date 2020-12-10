@@ -4,9 +4,10 @@ import { getTodos } from './api/todosApi';
 import DoneToDoList from './components/DoneToDoList';
 import NotFoundPage from './components/NotFoundPage';
 import ToDoList from './components/ToDoList';
-import { SET_TODOS } from './redux/actionType';
+import { SET_TAGS, SET_TODOS } from './redux/actionType';
 import './App.css';
 import { Button } from 'antd';
+import { getTags } from './api/tagsApi';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,16 @@ function App() {
     }
     dispatch(event)
   });
+
+  getTags().then(({ data }) => {
+    const event = {
+      type: SET_TAGS,
+      payload: data
+    }
+    dispatch(event)
+  })
+
+
   return (
     <div className="App">
       <HashRouter>

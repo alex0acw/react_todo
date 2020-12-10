@@ -1,7 +1,7 @@
 import React from 'react';
 import { deleteTodo, setTodoIsDone, setTodoTags as setTodoTagsApi } from '../api/todosApi';
-import TagGroup from "./TagGroup";
 import { DeleteOutlined } from '@ant-design/icons';
+import TagListContainer from '../containers/TagListContainer';
 
 export default function ToDoItem({ completeToDo, deleteToDo: deleteReduxTodo, id, todoItem: { complete: done, content, tags }, setToDoTags }) {
 
@@ -19,12 +19,19 @@ export default function ToDoItem({ completeToDo, deleteToDo: deleteReduxTodo, id
                 onClick={() => setTodoDoneWithApi(id, !done)}>
                 {content}
             </span>
-            <TagGroup tags={tags} onTagsCahnge={
+            <TagListContainer
+                tags={tags}
+                onTagsChange={
+                    (tags) => {
+                        setTodoTagsApi(id, tags).then(() => setToDoTags(id, tags))
+                    }
+                } ></TagListContainer>
+            {/* <TagGroup tags={tags} onTagsCahnge={
                 (tags) => {
                     setTodoTagsApi(id, tags).then(() => setToDoTags(id, tags))
 
                 }
-            } />
+            } /> */}
             <button onClick={(e) => { e.stopPropagation(); deleteTodoWithApi(id) }}><DeleteOutlined style={{ backgroundColor: "inherit" }} /> </button>
         </div>
     );
