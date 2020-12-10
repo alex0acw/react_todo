@@ -2,7 +2,7 @@ import { Button, Input } from "antd"
 import { useState } from "react"
 import { addTodos } from "../api/todosApi"
 
-export default function ({ addToDo }) {
+export default function ToDoGenerator({ addToDo }) {
     const [content, setContent] = useState("")
     const myAddTodo = (content) => {
         addTodos(content).then(({ data }) => { addToDo(content); setContent(""); })

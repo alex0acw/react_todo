@@ -77,7 +77,7 @@ export default class EditableTagGroup extends Component {
 
     hashString = function (str) {
         var hash = 0;
-        if (str.length == 0) return hash;
+        if (str.length === 0) return hash;
         for (let i = 0; i < str.length; i++) {
             const char = str.charCodeAt(i);
             hash = ((hash << 5) - hash) + char;
@@ -86,13 +86,11 @@ export default class EditableTagGroup extends Component {
         return hash;
     }
 
-    colorArray = ["Blue ", "Green", "Red", "Brown", "Violet", "Indigo", "#222"];
+    colorArray = ["Blue ", "Green", "Red", "Brown", "Violet", "Indigo", "Purple"];
 
     hashColor = (str) => this.colorArray[Math.abs(this.hashString(str)) % this.colorArray.length]
 
     render() {
-        const { onTagsCahnge } = this.props;
-
         const { tags, inputVisible, inputValue, editInputIndex, editInputValue } = this.state;
         return (
             <div className="tag-group">

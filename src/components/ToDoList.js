@@ -2,9 +2,9 @@ import ToDoGeneratorContainer from "../containers/ToDoGeneratorContainer";
 import ToDoGroupContainer from "../containers/ToDoGroupContainer";
 import "./ToDoList.css"
 
-export default function () {
-    
-    
+export default function TodoList() {
+
+
     return (
         <div className="todo-list">
             <p>TODO List</p>

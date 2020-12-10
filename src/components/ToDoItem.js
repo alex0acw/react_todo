@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { deleteTodo, setTodoIsDone, setTodoTags as setTodoTagsApi } from '../api/todosApi';
 import TagGroup from "./TagGroup";
+import { DeleteOutlined } from '@ant-design/icons';
 
 export default function ToDoItem({ completeToDo, deleteToDo: deleteReduxTodo, id, todoItem: { complete: done, content, tags }, setToDoTags }) {
 
@@ -24,7 +25,7 @@ export default function ToDoItem({ completeToDo, deleteToDo: deleteReduxTodo, id
 
                 }
             } />
-            <button onClick={(e) => { e.stopPropagation(); deleteTodoWithApi(id) }}>x</button>
+            <button onClick={(e) => { e.stopPropagation(); deleteTodoWithApi(id) }}><DeleteOutlined style={{ backgroundColor: "inherit" }} /> </button>
         </div>
     );
 }
