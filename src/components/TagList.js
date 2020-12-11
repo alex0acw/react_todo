@@ -1,6 +1,6 @@
 import { AutoComplete, Tag, Tooltip } from "antd";
 import { useEffect, useRef, useState } from "react";
-import { addTodoTags } from "../api/todosApi";
+import {addTag as addTagApi} from "../api/tagsApi"
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons';
 import { TagCreator } from "./TagCreator";
 
@@ -21,7 +21,7 @@ export default function TagList({ tags: initTags, tagDefs: initTagDefs, onTagsCh
         if (tagDefs.filter(tagDef => tagDef.content === content).length === 0) {
             const newTagDef = { content, color: color };
             setTagDefs([...tagDefs, newTagDef])
-            addTodoTags(newTagDef.content, newTagDef.color).then(() => {
+            addTagApi(newTagDef.content, newTagDef.color).then(() => {
                 addTagDefRedux(newTagDef)
             })
         }

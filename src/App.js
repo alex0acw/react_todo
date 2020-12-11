@@ -12,6 +12,7 @@ import { getTags } from './api/tagsApi';
 function App() {
   const dispatch = useDispatch();
   getTodos().then(({ data }) => {
+    console.log(data)
     const event = {
       type: SET_TODOS,
       payload: data.reduce((prev, current) => {
@@ -26,7 +27,7 @@ function App() {
   getTags().then(({ data }) => {
     const event = {
       type: SET_TAGS,
-      payload: data
+      payload: data.map((tag) => ({ ...tag, content: tag.name }))
     }
     dispatch(event)
   })
