@@ -50,7 +50,8 @@ export default function TagList({ tags: initTags, tagDefs: initTagDefs, onTagsCh
             {inputVisible && (
                 <TagCreator
                     onClose={() => { setInputVisible(false); }}
-                    onCreateTag={(tag) => { addTag(tag); setInputVisible(false); }} tagOptions={tagDefs.map(v => ({ value: v.content }))}
+                    onCreateTag={(tag) => { addTag(tag); setInputVisible(false); }}
+                    tagDefs={tagDefs}
                 />
             )}
             {!inputVisible && (

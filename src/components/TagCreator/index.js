@@ -1,17 +1,20 @@
 import { AutoComplete, Tag } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { TwitterPicker } from 'react-color';
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
+import './style.css'
 
-export function TagCreator({ onCreateTag, tagOptions, onClose, ...props }) {
+export function TagCreator({ onCreateTag, tagDefs, onClose, ...props }) {
     const [color, setColor] = useState("Blue");
     const [colorPickerVisible, setColorPickerVisible] = useState(false);
+    const [inputName, setInputName] = useState('');
     const inputRef = useRef(null);
     useEffect(() => {
         inputRef.current?.focus();
     });
     return (
         <Tag
+            className="tag-creator"
             style={{ display: "flex" }}
             {...props}
         >
@@ -32,24 +35,23 @@ export function TagCreator({ onCreateTag, tagOptions, onClose, ...props }) {
                     </div>
                 }
             </div>
-            <AutoComplete
-                ref={inputRef}
-                bordered={false}
-                options={tagOptions}
-                style={{ minWidth: "100px", border: 0, flexGrow: 1, fontSize: "inherit" }}
-                onSelect={(data) => {
-                    onCreateTag({ content: data, color: color });
-                }}
-                filterOption={(input, option) => (option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0)}
-                placeholder="input here"
-                onInputKeyDown={(keyEvent) => {
+            <input ref={inputRef} type='text' placeholder="tag name..." list='tag-creator-input-options'
+                onKeyDown={(keyEvent) => {
                     if (keyEvent.key === "Enter") {
                         onCreateTag({ content: keyEvent.target.value, color: color });
-                        // setInputVisible(false);
+                    }
+                    if (keyEvent.key === "Escape") {
+                        onClose?.()
                     }
                 }}
-
             />
+            <datalist id='tag-creator-input-options'>
+                {
+                    tagDefs.map(({ content }) => (
+                        <option value={content}>{content}</option>))
+                }
+            </datalist>
+            <CheckOutlined onClick={() => onClose?.()} />
             <CloseOutlined onClick={() => onClose?.()} style={{ backgroundColor: "transparent", width: "2vw", flexGrow: 0 }} />
         </Tag>
     )
