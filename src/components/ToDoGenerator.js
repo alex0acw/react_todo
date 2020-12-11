@@ -15,7 +15,9 @@ export default function ToDoGenerator({ addToDo }) {
             />
             <Button onClick={() =>
                 myAddTodo(content)
-            } >Add</Button>
+            }>
+                Add
+            </Button>
         </div>
     )
 }

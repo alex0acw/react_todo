@@ -1,5 +1,4 @@
 import { ADD_TO_DO, TOGGLE_TO_DO, DELETE_TO_DO, SET_TODOS, SET_TODOS_TAGS, ADD_TAG, SET_TAGS } from './actionType'
-import { v4 as uuidv4 } from 'uuid';
 import { combineReducers } from "redux";
 
 

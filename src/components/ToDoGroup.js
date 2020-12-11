@@ -1,6 +1,5 @@
-import React, { Component, useEffect } from 'react';
+import React from 'react';
 import ToDoItemContainer from '../containers/ToDoItemContainer';
-import ToDoItem from './ToDoItem';
 
 function ToDoGroup({ toDoList }) {
     return (

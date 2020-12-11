@@ -1,7 +1,7 @@
 import { AutoComplete, Tag } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { TwitterPicker } from 'react-color';
-import { PlusOutlined, CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
 
 export function TagCreator({ onCreateTag, tagOptions, onClose, ...props }) {
     const [color, setColor] = useState("Blue");
@@ -16,7 +16,7 @@ export function TagCreator({ onCreateTag, tagOptions, onClose, ...props }) {
             {...props}
         >
             <div style={{ display: "flex", flexDirection: "column" }}>
-                <span style={{ width: "20px", height: "100%", backgroundColor: color, flex: "0 0 20px" }}
+                <span style={{ width: "2vw", flexGrow: 1, backgroundColor: color }}
                     onClick={() => { setColorPickerVisible(true) }}
                 >
                 </span>
@@ -36,7 +36,7 @@ export function TagCreator({ onCreateTag, tagOptions, onClose, ...props }) {
                 ref={inputRef}
                 bordered={false}
                 options={tagOptions}
-                style={{ width: 200, flexGrow: 1, border: 0, flexDirection: "row" }}
+                style={{ minWidth: "100px", border: 0, flexGrow: 1, fontSize: "inherit" }}
                 onSelect={(data) => {
                     onCreateTag({ content: data, color: color });
                 }}
@@ -50,7 +50,7 @@ export function TagCreator({ onCreateTag, tagOptions, onClose, ...props }) {
                 }}
 
             />
-            <CloseOutlined onClick={() => onClose?.()} style={{ backgroundColor: "transparent" }} />
+            <CloseOutlined onClick={() => onClose?.()} style={{ backgroundColor: "transparent", width: "2vw", flexGrow: 0 }} />
         </Tag>
     )
 }

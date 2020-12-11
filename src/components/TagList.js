@@ -1,6 +1,6 @@
-import { AutoComplete, Tag, Tooltip } from "antd";
-import { useEffect, useRef, useState } from "react";
-import {addTag as addTagApi} from "../api/tagsApi"
+import { Tag, Tooltip } from "antd";
+import { useEffect, useState } from "react";
+import { addTag as addTagApi } from "../api/tagsApi"
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons';
 import { TagCreator } from "./TagCreator";
 
