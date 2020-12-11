@@ -12,12 +12,11 @@ import { getTags } from './api/tagsApi';
 function App() {
   const dispatch = useDispatch();
   getTodos().then(({ data }) => {
-    console.log(data)
     const event = {
       type: SET_TODOS,
       payload: data.reduce((prev, current) => {
-        const { content, isDone: complete, tags } = current;
-        prev[current.id] = { content, complete, tags };
+        const { content, isDone: complete, tags, id } = current;
+        prev[id] = { content, complete, tags: tags || [] };
         return prev
       }, {})
     }
