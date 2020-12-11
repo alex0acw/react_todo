@@ -13,9 +13,11 @@ const toDoList = (state = {}, action) => {
             return { ...state };
         }
         case ADD_TO_DO: {
-            return { ...state, [uuidv4()]: { content: action.payload, complete: false, tags: [] } };
+            const { content, id, tags, isDone: complete } = action.payload;
+            return { ...state, [action.payload.id]: { content, id, tags, complete } };
         }
         case DELETE_TO_DO:
+            console.log(`deleting ${action.payload}`)
             delete state[action.payload];
             return { ...state };
         case TOGGLE_TO_DO:

@@ -4,7 +4,7 @@ export const getTodos = () => {
     return api.get('/todos');
 }
 
-export const addTodos = (content) =>
+export const addTodo = (content) =>
     api.post('/todos', { content, isDone: false, tags: [] });
 
 export const deleteTodo = (id) => api.delete(`/todos/${id}`);

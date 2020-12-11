@@ -9,7 +9,7 @@ function ToDoGroup({ toDoList }) {
                 Object.entries(toDoList).map(
                     ([uuid, value]) => {
                         // return <ToDoItemContainer key={uuid} id={uuid} todoItem={value} />
-                        return <ToDoItem key={uuid} id={uuid} todoItem={value}></ToDoItem>
+                        return <ToDoItemContainer key={uuid} id={uuid} todoItem={value}></ToDoItemContainer>
                     }
                 )
             }

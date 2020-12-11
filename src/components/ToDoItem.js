@@ -14,7 +14,8 @@ export default function ToDoItem({ completeToDo, deleteToDo: deleteReduxTodo, id
     }, [initId, initTodoItem])
 
     const deleteTodoWithApi = (id) => {
-        deleteTodo(id).then(() => deleteReduxTodo?.(id));
+        console.log(`deleteTodoWithApi ${id}`)
+        deleteTodo(id).then(() => deleteReduxTodo(id));
     }
 
     const setTodoDoneWithApi = (id, isDone) => {
